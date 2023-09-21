@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="css/cadastro.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap"
+      rel="stylesheet"
+    />    
+
+    <!-- ICONES -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet">
+
+    <title>Cadastro de pessoa</title>
+</head>
+
+<body>
+     <!-- Cabeçalho de informações do sistema -->
+    <header>
+        <div class="title">
+            <h2>Cadastro de Pessoas</h2>
+        </div>
+    </header>
+
+     <!-- Opções para adicionar um nova pessoa -->
+    <section class="newPessoa">
+        <p>
+           <input type="text" id="inputCpf" oninput="mascaraCpf(this)" onblur="validarCPF(this.value);" placeholder="CPF:">         
+           <input type="text" id="inputNome" size="42" oninput="InputMaiusculo(event)" placeholder="Pessoa:">
+           <input type="text" id="inputCep" oninput="mascaraCep(this)" onblur="BuscaCep(this.value);"  placeholder="Cep:">   
+           <input type="text" id="inputLogradouro" oninput="InputMaiusculo(event)" placeholder="Logradouro:">   
+           <input type="text" id="inputComplemento" oninput="InputMaiusculo(event)" placeholder="Complemento:">   
+        </p>
+        
+        <p>
+           <input type="text" id="inputNumero" placeholder="Numero:">   
+           <input type="text" id="inputBairro" oninput="InputMaiusculo(event)" placeholder="Bairro:">   
+           <input type="text" id="inputCidade" oninput="InputMaiusculo(event)" placeholder="Cidade:">   
+           <input type="text" id="inputUf" oninput="InputMaiusculo(event)" placeholder="Estado:">   
+           <input type="text" id="inputIbge" placeholder="IBGE:">   
+
+           <button onclick="newItemPessoa()" class="addBtn">Adicionar</button>
+           <a onclick="voltarURL()" class="voltarURL">
+              <span class="material-icons">restart_alt</span>
+           </a>
+        </p>
+
+    </section>
+
+    <label id="filtro">Filtro</label>
+    <select id="cboFiltro" onblur="selecionaFiltro(this.value)">
+        <option value="td">Todas</option>
+        <option value="id">Id</option>
+    </select>
+    <input type="text" id="filtroId" onblur="BuscaPorId(this.value);" placeholder="Id" > 
+    <p></p>
+    
+    <!-- Tabela com items existentes -->
+    <section class="items">
+        <table id="myTable">
+            <tr>
+                <th>id</th>
+                <th>Cpf</th>
+                <th>Nome</th>
+                <th>Cep</th>
+                <th>Logradouro</th>
+                <th>Complemento</th>
+                <th>Numero</th>
+                <th>Bairro</th>
+                <th>Cidade</th>
+                <th>Estado</th>
+                <th>Ibge</th>
+                <th><img src="https://cdn-icons-png.flaticon.com/512/126/126468.png" width="15px" height="15px" title="no x para excluir"></th>
+                <th><img src="https://cdn-icons-png.flaticon.com/512/126/126467.png" width="15px" height="15px" title="Click na seta para Alterar"></th>
+            </tr>
+        </table>
+    </section>
+
+    <div class="modal-container">
+        <div class="modal">
+          <form>
+            
+            <div id="desabilita">
+                <label for="m-id">Id</label>
+                <input id="m-id" type="text" readonly/>
+            </div>
+            
+            <label for="m-cpf">Cpf</label>
+            <input id="m-cpf" type="text" oninput="mascaraCpf(this)" onblur="validarCPF(this.value);" required/>
+            <label for="m-nome">Nome</label>
+            <input id="m-nome" type="text" oninput="InputMaiusculo(event)" required/>
+            <label for="m-cep">Cep</label>
+            <input id="m-cep" type="text" oninput="mascaraCep(this)" onblur="BuscaCep(this.value);" required />
+            <label for="m-logradouro">Logradouro</label>
+            <input id="m-logradouro" type="text"   oninput="InputMaiusculo(event)" required/>
+            <label for="m-complemento">Complemento</label>
+            <input id="m-complemento" type="text" oninput="InputMaiusculo(event)"/>
+            <label for="m-numero">Numero</label>
+            <input id="m-numero" type="text" required />
+            <label for="m-bairro">Bairro</label>
+            <input id="m-bairro" type="text" oninput="InputMaiusculo(event)" required/>
+            <label for="m-cidade">Cidade</label>
+            <input id="m-cidade" type="text" oninput="InputMaiusculo(event)" required/>
+            <label for="m-uf">Estado</label>
+            <input id="m-uf" type="text" oninput="InputMaiusculo(event)" required/>
+            <label for="m-ibge">Ibge</label>
+            <input id="m-ibge" type="text" required />
+            <button id="btnSalvar">Salvar</button>
+          </form>
+        </div>
+    </div>
+    
+    <style>
+        input[type=text]{
+            height: 30px;    
+        }
+    </style>
+
+    <script src="js/pessoa.js"></script>
+    <script src="js/funcao.js"></script>
+
+</body>
+</html>
